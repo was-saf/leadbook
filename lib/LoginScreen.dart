@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leadbook/forgotpassword.dart';
 import 'package:leadbook/SignUpScreen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -95,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Spacer(),
                   TextButton(
                     onPressed: () {
-                      // Handle forgot password
+                      ForgotPassword();
                     },
                     child: Text(
                       'Forgot Password',
