@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:leadbook/leadbookscreen.dart';
+import 'package:leadbook/views/pages/leadbookscreen.dart';
 
 void main() {
   runApp(const MyApp());

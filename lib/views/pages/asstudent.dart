@@ -4,9 +4,10 @@ class AsStudent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    final padding = screenSize.width * 0.08; // Consistent padding with AsTutor
+    final padding = screenSize.width * 0.05; // Consistent padding with AsTutor
 
     return Scaffold(
+      appBar: AppBar(backgroundColor: Colors.white, elevation: 0),
       backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.symmetric(
@@ -23,7 +24,7 @@ class AsStudent extends StatelessWidget {
                   style: TextStyle(
                     fontSize: screenSize.width * 0.07,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF41B57F), // Matched color
+                    color: Color(0xFF41B57F),
                   ),
                 ),
               ),
@@ -39,47 +40,77 @@ class AsStudent extends StatelessWidget {
                 ),
               ),
               SizedBox(height: screenSize.height * 0.025),
-              _buildTextField(
+              _buildTextFormField(
                 'Name',
                 'Enter Full Name',
                 screenSize,
                 icon: Icons.person,
               ),
-              _buildTextField(
+              _buildTextFormField(
                 'Class',
                 'Enter Your Class',
                 screenSize,
                 icon: Icons.school,
               ),
-              _buildTextField(
+              _buildTextFormField(
                 'City',
                 'Karachi (carried over from signup)',
                 screenSize,
                 icon: Icons.location_city,
               ),
-              _buildTextField(
+              _buildTextFormField(
                 'School/College',
                 'APS Faisal (carried over from sign up)',
                 screenSize,
                 icon: Icons.account_balance,
               ),
-              _buildTextField(
+              _buildTextFormField(
                 'Contact',
                 '0311-0274015 (carried over from sign up)',
                 screenSize,
                 icon: Icons.phone,
               ),
-              _buildTextField(
+              _buildTextFormField(
                 'Subjects',
                 'Enter Name of Subjects',
                 screenSize,
                 icon: Icons.book,
               ),
-              _buildTextField(
+              _buildTextFormField(
                 'Board',
                 'Enter Your Board',
                 screenSize,
                 icon: Icons.account_balance,
+              ),
+              _buildTextFormField(
+                'Timings',
+                'Enter Your Available Hours',
+                screenSize,
+                icon: Icons.schedule,
+              ),
+              _buildTextFormField(
+                'No. Of Days',
+                'Enter Days Available Per Week',
+                screenSize,
+                icon: Icons.calendar_today,
+              ),
+              _buildTextFormField(
+                'Mode of Tuition',
+                'Online or In-Person',
+                screenSize,
+                icon: Icons.laptop,
+              ),
+              _buildTextFormField(
+                'Fees',
+                'Enter Expected Fee Range',
+                screenSize,
+                icon: Icons.attach_money,
+              ),
+              _buildTextFormField(
+                'Remarks',
+                'Enter any remarks',
+                screenSize,
+                icon: Icons.comment,
               ),
               SizedBox(height: screenSize.height * 0.04),
               Center(
@@ -114,16 +145,14 @@ class AsStudent extends StatelessWidget {
     );
   }
 
-  Widget _buildTextField(
+  Widget _buildTextFormField(
     String label,
     String hint,
     Size screenSize, {
     IconData? icon,
   }) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: screenSize.height * 0.01, // Reduced spacing between fields
-      ),
+      padding: EdgeInsets.symmetric(vertical: screenSize.height * 0.005),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -137,7 +166,7 @@ class AsStudent extends StatelessWidget {
           SizedBox(height: screenSize.height * 0.005),
           SizedBox(
             height: screenSize.height * 0.065,
-            child: TextField(
+            child: TextFormField(
               decoration: InputDecoration(
                 hintText: hint,
                 prefixIcon: icon != null ? Icon(icon) : null,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:leadbook/loginscreen.dart';
+import 'package:leadbook/views/pages/loginscreen.dart';
+import 'package:leadbook/views/pages/studenttutorscreen.dart';
 
 class SignUpScreen extends StatelessWidget {
   @override
@@ -79,7 +80,12 @@ class SignUpScreen extends StatelessWidget {
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    // Handle continue button press
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => StudentTutorScreen(),
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF41B57F),

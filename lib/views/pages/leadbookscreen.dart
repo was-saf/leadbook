@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:leadbook/SignUpLoginScreen.dart';
+import 'package:leadbook/views/pages/signuploginscreen.dart';
 
 class LeadBookScreen extends StatefulWidget {
   const LeadBookScreen({super.key});
