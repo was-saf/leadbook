@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:leadbook/data/notifiers.dart';
 import 'package:leadbook/views/pages/forgotpassword.dart';
 import 'package:leadbook/views/pages/SignUpScreen.dart';
+import 'package:leadbook/views/widget_tree.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -17,7 +19,16 @@ class _LoginScreenState extends State<LoginScreen> {
     final padding = screenSize.width * 0.05; // 5% of screen width for padding
 
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.white, elevation: 0),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.all(padding),
@@ -49,7 +60,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Text(
                     "Don't have an account?",
-                    style: TextStyle(fontSize: screenSize.width * 0.04),
+                    style: TextStyle(
+                      fontSize: screenSize.width * 0.04,
+                      color: Colors.black,
+                    ),
                   ),
                   TextButton(
                     onPressed: () {
@@ -83,7 +97,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   Text(
                     'Remember me',
-                    style: TextStyle(fontSize: screenSize.width * 0.04),
+                    style: TextStyle(
+                      fontSize: screenSize.width * 0.04,
+                      color: Colors.black,
+                    ),
                   ),
                   Spacer(),
                   TextButton(
@@ -109,7 +126,15 @@ class _LoginScreenState extends State<LoginScreen> {
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    // Handle login button press
+                    selectedPageNotifier.value = 1;
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return WidgetTree();
+                        },
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF41B57F),
@@ -177,8 +202,10 @@ class _LoginScreenState extends State<LoginScreen> {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: screenSize.height * 0.01),
       child: TextField(
+        style: TextStyle(color: Colors.black), // Set input text color to black
         decoration: InputDecoration(
           labelText: label,
+          labelStyle: TextStyle(color: Colors.black),
           prefixIcon: Icon(icon),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
         ),
@@ -189,7 +216,14 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _buildSocialLoginButton(String assetPath) {
     return GestureDetector(
       onTap: () {
-        // Handle social login
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return WidgetTree();
+            },
+          ),
+        );
       },
       child: Container(
         width: 50,

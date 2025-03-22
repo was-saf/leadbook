@@ -8,7 +8,16 @@ class ForgotPassword extends StatelessWidget {
     final padding = screenSize.width * 0.05;
 
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.white, elevation: 0),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.all(padding),
@@ -43,7 +52,10 @@ class ForgotPassword extends StatelessWidget {
                   'Please enter your email and we will send\n'
                   'you a link to return to your account',
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: screenSize.width * 0.04),
+                  style: TextStyle(
+                    fontSize: screenSize.width * 0.04,
+                    color: Colors.black,
+                  ),
                 ),
               ),
               SizedBox(height: screenSize.height * 0.02),
@@ -103,8 +115,11 @@ class ForgotPassword extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: screenSize.height * 0.01),
       child: TextField(
+        style: TextStyle(color: Colors.black), // Set input text color to black
+
         decoration: InputDecoration(
           labelText: label,
+          labelStyle: TextStyle(color: Colors.black),
           prefixIcon: Icon(icon),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
         ),

@@ -14,7 +14,16 @@ class StudentTutorScreen extends StatelessWidget {
     final padding = screenSize.width * 0.05; // 5% of screen width for padding
 
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.white, elevation: 0),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.all(padding),
@@ -47,7 +56,7 @@ class StudentTutorScreen extends StatelessWidget {
                 context,
                 title: 'As a Student:',
                 description:
-                    'You could Register as a Student to Search for Tutors, Notes, Numerical, Derivations, Solved Past Papers, and Scientific Reasonings.',
+                    "Register to access tutors, notes, past papers, and more",
                 buttonText: 'Register as a Student',
                 onPressed: () {
                   Navigator.push(
@@ -62,7 +71,7 @@ class StudentTutorScreen extends StatelessWidget {
                 context,
                 title: 'As a Tutor:',
                 description:
-                    'You could Register as a Tutor to connect with students, and get a head start to your teaching journey.',
+                    'Register as a tutor to connect with students and start teaching.',
                 buttonText: 'Register as a Tutor',
                 onPressed: () {
                   Navigator.push(

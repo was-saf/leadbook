@@ -10,7 +10,16 @@ class SignUpScreen extends StatelessWidget {
     final padding = screenSize.width * 0.05; // 5% of screen width for padding
 
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.white, elevation: 0),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.all(padding),
@@ -47,6 +56,7 @@ class SignUpScreen extends StatelessWidget {
                     'Have an account?',
                     style: TextStyle(
                       fontSize: screenSize.width * 0.04,
+                      color: Colors.black,
                     ), // 4% of screen width
                   ),
                   TextButton(
@@ -111,10 +121,11 @@ class SignUpScreen extends StatelessWidget {
               SizedBox(height: screenSize.height * 0.02), // 2% of screen height
               Center(
                 child: Text(
-                  'By continuing you confirm that you agree\nwith our Term and Condition',
+                  'By continuing you confirm that you agree\nwith our Terms and Conditions.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: screenSize.width * 0.035,
+                    color: Colors.black,
                   ), // 3.5% of screen width
                 ),
               ),
@@ -131,8 +142,10 @@ class SignUpScreen extends StatelessWidget {
         vertical: screenSize.height * 0.01,
       ), // 1% of screen height
       child: TextField(
+        style: TextStyle(color: Colors.black), // Set input text color to black
         decoration: InputDecoration(
           labelText: label,
+          labelStyle: TextStyle(color: Colors.black),
           prefixIcon: Icon(icon),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
         ),

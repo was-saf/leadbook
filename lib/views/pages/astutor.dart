@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:leadbook/data/notifiers.dart';
+import 'package:leadbook/views/widget_tree.dart';
 
 class AsTutor extends StatelessWidget {
   @override
@@ -7,7 +9,16 @@ class AsTutor extends StatelessWidget {
     final padding = screenSize.width * 0.05; // Overall screen padding
 
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.white, elevation: 0),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.symmetric(
@@ -95,7 +106,15 @@ class AsTutor extends StatelessWidget {
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    // Handle form submission
+                    selectedPageNotifier.value = 1;
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return WidgetTree();
+                        },
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF41B57F),
@@ -140,14 +159,19 @@ class AsTutor extends StatelessWidget {
             style: TextStyle(
               fontSize: screenSize.width * 0.04,
               fontWeight: FontWeight.w500,
+              color: Colors.black,
             ),
           ),
           SizedBox(height: screenSize.height * 0.005),
           SizedBox(
             height: screenSize.height * 0.065,
             child: TextFormField(
+              style: TextStyle(
+                color: Colors.black,
+              ), // Set input text color to black
               decoration: InputDecoration(
                 hintText: hint,
+                hintStyle: TextStyle(color: Colors.black45),
                 prefixIcon: icon != null ? Icon(icon) : null,
                 contentPadding: EdgeInsets.symmetric(
                   vertical: screenSize.height * 0.015,

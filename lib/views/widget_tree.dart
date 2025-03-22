@@ -21,10 +21,14 @@ class WidgetTree extends StatelessWidget {
         title: FittedBox(
           child: Row(
             children: [
-              Image.asset('assets/images/logo.png', height: screenSize.height * 0.07), // 7% of screen height
+              Image.asset(
+                'assets/images/white_no_bg.png',
+                height: screenSize.height * 0.07,
+                width: screenSize.width * 0.07,
+              ), // 7% of screen height
               SizedBox(width: screenSize.width * 0.02), // 2% of screen width
               Text(
-                'Student Handbook',
+                'Lead Book',
                 style: TextStyle(
                   fontSize: screenSize.width * 0.05, // 5% of screen width
                   fontWeight: FontWeight.bold,
