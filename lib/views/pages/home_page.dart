@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leadbook/views/pages/TutorListScreen.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -28,7 +29,7 @@ class HomePage extends StatelessWidget {
                 color: Colors.blueAccent,
                 child: Center(
                   child: Text(
-                    'Advertisement Banner',
+                    'Learn to conquer',
                     style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                 ),
@@ -49,7 +50,12 @@ class HomePage extends StatelessWidget {
               ),
               SizedBox(height: 20.0),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => TutorListScreen()),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(double.infinity, 50.0),
                 ),
