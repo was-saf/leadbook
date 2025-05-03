@@ -4,6 +4,8 @@ import 'package:leadbook/views/pages/astutor.dart';
 import 'package:leadbook/views/pages/loginscreen.dart';
 
 class StudentTutorScreen extends StatelessWidget {
+  const StudentTutorScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -55,8 +57,6 @@ class StudentTutorScreen extends StatelessWidget {
               _buildRegistrationOption(
                 context,
                 title: 'As a Student:',
-                description:
-                    "Register to access tutors, notes, past papers, and more",
                 buttonText: 'Register as a Student',
                 onPressed: () {
                   Navigator.push(
@@ -70,8 +70,6 @@ class StudentTutorScreen extends StatelessWidget {
               _buildRegistrationOption(
                 context,
                 title: 'As a Tutor:',
-                description:
-                    'Register as a tutor to connect with students and start teaching.',
                 buttonText: 'Register as a Tutor',
                 onPressed: () {
                   Navigator.push(
@@ -108,7 +106,6 @@ class StudentTutorScreen extends StatelessWidget {
   Widget _buildRegistrationOption(
     BuildContext context, {
     required String title,
-    required String description,
     required String buttonText,
     required VoidCallback onPressed,
     required EdgeInsets buttonPadding,
@@ -116,7 +113,7 @@ class StudentTutorScreen extends StatelessWidget {
     final screenSize = MediaQuery.of(context).size;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 40.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -127,15 +124,6 @@ class StudentTutorScreen extends StatelessWidget {
               fontSize: screenSize.width * 0.06,
               color: Color(0xFF41B57F),
               fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: screenSize.height * 0.02),
-          Text(
-            description,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: screenSize.width * 0.035,
-              color: Colors.black,
             ),
           ),
           SizedBox(height: screenSize.height * 0.03),

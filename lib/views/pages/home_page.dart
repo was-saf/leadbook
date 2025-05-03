@@ -1,55 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:leadbook/views/pages/TutorListScreen.dart';
+import 'package:leadbook/views/pages/grade9/grade9.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 50.0,
-                child: Center(
-                  child: Text(
-                    'Welcome to the Home Page',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-              SizedBox(height: 20.0),
-              Container(
-                width: double.infinity,
-                height: 100.0,
-                color: Colors.blueAccent,
-                child: Center(
-                  child: Text(
-                    'Learn to conquer',
-                    style: TextStyle(fontSize: 18, color: Colors.white),
-                  ),
-                ),
-              ),
-              SizedBox(height: 20.0),
-              Wrap(
-                spacing: 30.0,
-                runSpacing: 10.0,
-                children: List.generate(4, (index) {
-                  return ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: Size(150.0, 50.0),
-                    ),
-                    onPressed: () {},
-                    child: Text('Class ${index + 9}'),
-                  );
-                }),
-              ),
-              SizedBox(height: 20.0),
-              ElevatedButton(
+      backgroundColor: isDarkMode ? Colors.black12 : Colors.white,
+      body: Padding(
+        padding: EdgeInsets.all(screenSize.width * 0.01),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildSearchBar(isDarkMode),
+            SizedBox(height: screenSize.height * 0.01),
+            _buildAdvertBanner(screenSize, isDarkMode),
+            SizedBox(height: screenSize.height * 0.01),
+            _buildGradeButton(
+              context,
+              color: Colors.amber,
+              grade: 'Grade 9',
+              screen: Grade9(),
+            ),
+            SizedBox(height: 10),
+            _buildGradeButton(
+              context,
+              color: Colors.redAccent,
+              grade: 'Grade 9',
+              screen: TutorListScreen(),
+            ),
+            SizedBox(height: 10),
+            _buildGradeButton(
+              context,
+              color: Colors.green,
+              grade: 'Grade 11',
+              screen: TutorListScreen(),
+            ),
+            SizedBox(height: 10),
+            _buildGradeButton(
+              context,
+              color: Colors.purple,
+              grade: 'Grade 12',
+              screen: TutorListScreen(),
+            ),
+            Spacer(),
+            Center(
+              child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -57,12 +58,122 @@ class HomePage extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  minimumSize: Size(double.infinity, 50.0),
+                  backgroundColor: Color(0xFF4654BF),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: screenSize.width * 0.2,
+                    vertical: screenSize.height * 0.015,
+                  ),
                 ),
-                child: Text('Need a Tutor?'),
+                child: Text(
+                  'Find a Tutor',
+                  style: TextStyle(
+                    fontSize: screenSize.width * 0.045,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
               ),
-            ],
+            ),
+            SizedBox(height: screenSize.height * 0.02),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSearchBar(bool isDarkMode) {
+    return TextField(
+      decoration: InputDecoration(
+        hintText: 'Search with AI ✨',
+        prefixIcon: Icon(
+          Icons.search,
+          color: isDarkMode ? Colors.white70 : Colors.black54,
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15.0),
+          borderSide: BorderSide.none,
+        ),
+        filled: true,
+        fillColor: isDarkMode ? Colors.grey[850] : Colors.grey[200],
+      ),
+      style: TextStyle(color: isDarkMode ? Colors.white : Colors.black),
+    );
+  }
+
+  Widget _buildAdvertBanner(Size screenSize, bool isDarkMode) {
+    return Container(
+      width: double.infinity,
+      height: screenSize.height * 0.10,
+      decoration: BoxDecoration(
+        color: isDarkMode ? Colors.grey[850] : Colors.grey[200],
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Center(
+        child: Text(
+          'Advert Banner',
+          style: TextStyle(
+            fontSize: 18,
+            color: isDarkMode ? Colors.white70 : Colors.black54,
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildGradeButton(
+    BuildContext context, {
+    required Color color,
+    required String grade,
+    required Widget screen,
+  }) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => screen),
+        );
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+        decoration: BoxDecoration(
+          color: color.withOpacity(0.2),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    grade,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: color,
+                    ),
+                  ),
+                  SizedBox(height: 2),
+                  Text(
+                    'Maths, Physics, Chemistry, Computer Science, Biology, English',
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: isDarkMode ? Colors.white70 : Colors.black87,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            ),
+            Icon(Icons.arrow_forward_ios, color: color, size: 16),
+          ],
         ),
       ),
     );
