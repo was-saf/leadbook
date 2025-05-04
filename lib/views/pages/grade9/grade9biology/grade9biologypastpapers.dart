@@ -1,37 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:leadbook/views/pages/grade9/grade9physics/grade9physicsmcqs.dart';
-import 'package:leadbook/views/pages/grade9/grade9physics/grade9physicspastpapers.dart';
-import 'package:leadbook/views/pages/grade9/grade9physics/grade9physicsnotes.dart';
-import 'package:leadbook/views/pages/grade9/grade9physics/grade9physicspracticeexercises.dart';
-import 'package:leadbook/views/pages/grade9/grade9physics/grade9physicsexercisesolutions.dart';
 
-class Grade9Physics extends StatelessWidget {
-  const Grade9Physics({super.key});
+class Grade9BiologyPastPapers extends StatelessWidget {
+  const Grade9BiologyPastPapers({super.key});
+  final List<String> chapters = const [
+    'Chapter 1',
+    'Chapter 2',
+    'Chapter 3',
+    'Chapter 4',
+    'Chapter 5',
+    'Chapter 6',
+  ];
 
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-
-    final List<Map<String, dynamic>> options = [
-      {'title': 'MCQs', 'screen': const Grade9PhysicsMCQs()},
-      {'title': 'Past Papers', 'screen': const Grade9PhysicsPastPapers()},
-      {'title': 'Notes', 'screen': const Grade9PhysicsNotes()},
-      {
-        'title': 'Practice Exercises',
-        'screen': const Grade9PhysicsPracticeExercises(),
-      },
-      {
-        'title': 'Exercise Solutions',
-        'screen': const Grade9PhysicsExerciseSolutions(),
-      },
-    ];
 
     return Scaffold(
       backgroundColor: isDarkMode ? Colors.black : Colors.grey[100],
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Top Yellow Bar
+          // Top Amber Bar
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             height: 100,
@@ -46,7 +35,7 @@ class Grade9Physics extends StatelessWidget {
                 ),
                 const SizedBox(width: 10),
                 const Text(
-                  'Grade 9 > Physics',
+                  'Grade 9 > Biology',
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
@@ -74,10 +63,19 @@ class Grade9Physics extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          // Options List
+          // Section Title: MCQs
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              'Past Papers',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          ),
+          const SizedBox(height: 10),
+          // Chapter List
           Expanded(
             child: ListView.separated(
-              itemCount: options.length,
+              itemCount: chapters.length,
               separatorBuilder:
                   (context, index) => Divider(
                     color: isDarkMode ? Colors.white24 : Colors.black26,
@@ -86,7 +84,7 @@ class Grade9Physics extends StatelessWidget {
               itemBuilder: (context, index) {
                 return ListTile(
                   title: Text(
-                    options[index]['title'],
+                    chapters[index],
                     style: TextStyle(
                       fontSize: 16,
                       color: isDarkMode ? Colors.white70 : Colors.black87,
@@ -95,12 +93,7 @@ class Grade9Physics extends StatelessWidget {
                   ),
                   trailing: const Icon(Icons.arrow_forward_ios, size: 18),
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => options[index]['screen'],
-                      ),
-                    );
+                    // TODO: Navigate to that chapter's MCQs if needed
                   },
                 );
               },

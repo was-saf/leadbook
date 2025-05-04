@@ -40,7 +40,7 @@ class StudentTutorScreen extends StatelessWidget {
                   style: TextStyle(
                     fontSize: screenSize.width * 0.07, // 7% of screen width
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF41B57F),
+                    color: Color(0xFF4654BF),
                   ),
                 ),
               ),
@@ -91,7 +91,7 @@ class StudentTutorScreen extends StatelessWidget {
                   'Simply explore the App by pressing this text',
                   style: TextStyle(
                     fontSize: screenSize.width * 0.04,
-                    color: Color(0xFF3FB4E3),
+                    color: Color(0xFF4654BF),
                   ),
                 ),
               ),
@@ -122,7 +122,7 @@ class StudentTutorScreen extends StatelessWidget {
             textAlign: TextAlign.left,
             style: TextStyle(
               fontSize: screenSize.width * 0.06,
-              color: Color(0xFF41B57F),
+              color: Color(0xFF4654BF),
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -130,7 +130,7 @@ class StudentTutorScreen extends StatelessWidget {
           ElevatedButton(
             onPressed: onPressed,
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xFF41B57F),
+              backgroundColor: Color(0xFF4654BF),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30.0),
               ),

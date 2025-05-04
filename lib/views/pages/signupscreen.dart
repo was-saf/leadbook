@@ -34,7 +34,7 @@ class SignUpScreen extends StatelessWidget {
                   style: TextStyle(
                     fontSize: screenSize.width * 0.07, // 7% of screen width
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF41B57F),
+                    color: Color(0xFF4654BF),
                   ),
                 ),
               ),
@@ -73,7 +73,7 @@ class SignUpScreen extends StatelessWidget {
                       'Log in',
                       style: TextStyle(
                         fontSize: screenSize.width * 0.04, // 4% of screen width
-                        color: Color(0xFF41B57F),
+                        color: Color(0xFF4654BF),
                       ),
                     ),
                   ),
@@ -98,7 +98,7 @@ class SignUpScreen extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF41B57F),
+                    backgroundColor: Color(0xFF4654BF),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0),
                     ),

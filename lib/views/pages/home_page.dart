@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
             _buildGradeButton(
               context,
               color: Colors.redAccent,
-              grade: 'Grade 9',
+              grade: 'Grade 10',
               screen: TutorListScreen(),
             ),
             SizedBox(height: 10),

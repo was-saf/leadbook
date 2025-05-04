@@ -35,7 +35,7 @@ class AsTutor extends StatelessWidget {
                   style: TextStyle(
                     fontSize: screenSize.width * 0.07,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF41B57F),
+                    color: Color(0xFF4654BF),
                   ),
                 ),
               ),
@@ -117,7 +117,7 @@ class AsTutor extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF41B57F),
+                    backgroundColor: Color(0xFF4654BF),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0),
                     ),

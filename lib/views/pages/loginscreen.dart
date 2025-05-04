@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: TextStyle(
                     fontSize: screenSize.width * 0.07, // 7% of screen width
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF41B57F),
+                    color: Color(0xFF4654BF),
                   ),
                 ),
               ),
@@ -76,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       'Sign up',
                       style: TextStyle(
                         fontSize: screenSize.width * 0.04,
-                        color: Color(0xFF41B57F),
+                        color: Color(0xFF4654BF),
                       ),
                     ),
                   ),
@@ -115,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Text(
                       'Forgot Password',
                       style: TextStyle(
-                        color: Color(0xFF41B57F),
+                        color: Color(0xFF4654BF),
                         fontSize: screenSize.width * 0.04,
                       ),
                     ),
@@ -137,7 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF41B57F),
+                    backgroundColor: Color(0xFF4654BF),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0),
                     ),

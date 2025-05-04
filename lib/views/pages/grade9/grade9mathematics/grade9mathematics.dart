@@ -46,7 +46,7 @@ class Grade9Mathematics extends StatelessWidget {
                 ),
                 const SizedBox(width: 10),
                 const Text(
-                  'Grade 9>Mathematics',
+                  'Grade 9 > Mathematics',
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,

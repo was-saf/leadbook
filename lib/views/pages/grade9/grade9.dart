@@ -16,32 +16,32 @@ class Grade9 extends StatelessWidget {
     final List<Map<String, dynamic>> subjects = [
       {
         'name': 'Mathematics',
-        'image': 'assets/images/Ymath.jpeg',
+        'image': 'assets/images/9math.png',
         'screen': const Grade9Mathematics(),
       },
       {
         'name': 'Physics',
-        'image': 'assets/images/physics.jpg',
+        'image': 'assets/images/9phy.png',
         'screen': const Grade9Physics(),
       },
       {
         'name': 'Chemistry',
-        'image': 'assets/images/chemistry.jpg',
+        'image': 'assets/images/9chem.png',
         'screen': const Grade9Chemistry(),
       },
       {
         'name': 'Computer Science',
-        'image': 'assets/images/computer.jpg',
+        'image': 'assets/images/9cs.png',
         'screen': const Grade9ComputerScience(),
       },
       {
         'name': 'Biology',
-        'image': 'assets/images/biology.jpg',
+        'image': 'assets/images/9bio.png',
         'screen': const Grade9Biology(),
       },
       {
         'name': 'English',
-        'image': 'assets/images/english.jpg',
+        'image': 'assets/images/9eng.png',
         'screen': const Grade9English(),
       },
     ];
