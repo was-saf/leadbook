@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:leadbook/views/pages/TutorListScreen.dart';
+import 'package:leadbook/views/pages/grade11/grade11.dart';
+import 'package:leadbook/views/pages/grade12/grade12.dart';
 import 'package:leadbook/views/pages/grade9/grade9.dart';
+import 'package:leadbook/views/pages/grade10/grade10.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -32,21 +35,21 @@ class HomePage extends StatelessWidget {
               context,
               color: Colors.redAccent,
               grade: 'Grade 10',
-              screen: TutorListScreen(),
+              screen: Grade10(),
             ),
             SizedBox(height: 10),
             _buildGradeButton(
               context,
               color: Colors.green,
               grade: 'Grade 11',
-              screen: TutorListScreen(),
+              screen: Grade11(),
             ),
             SizedBox(height: 10),
             _buildGradeButton(
               context,
               color: Colors.purple,
               grade: 'Grade 12',
-              screen: TutorListScreen(),
+              screen: Grade12(),
             ),
             Spacer(),
             Center(
