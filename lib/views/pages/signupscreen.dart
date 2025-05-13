@@ -1,154 +1,181 @@
 import 'package:flutter/material.dart';
 import 'package:leadbook/views/pages/loginscreen.dart';
-import 'package:leadbook/views/pages/studenttutorscreen.dart';
+import 'package:leadbook/views/pages/signup_details_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    // Get the screen size
     final screenSize = MediaQuery.of(context).size;
-    final padding = screenSize.width * 0.05; // 5% of screen width for padding
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
       backgroundColor: Colors.white,
-      body: Padding(
-        padding: EdgeInsets.all(padding),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Center(
-                // Center the title
-                child: Text(
-                  'LEAD BOOK',
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: screenSize.width * 0.08),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(height: screenSize.height * 0.03),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: IconButton(
+                    icon: Icon(Icons.arrow_back, color: Colors.black),
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                ),
+                Image.asset(
+                  'assets/images/Group_29.png',
+                  height: screenSize.height * 0.2,
+                ),
+                SizedBox(height: screenSize.height * 0.025),
+                Text(
+                  'Create an account',
                   style: TextStyle(
-                    fontSize: screenSize.width * 0.07, // 7% of screen width
+                    fontSize: screenSize.width * 0.045,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF4654BF),
+                    color: Colors.black,
                   ),
                 ),
-              ),
-              SizedBox(height: screenSize.height * 0.01), // 1% of screen height
-              Text(
-                'Sign up',
-                style: TextStyle(
-                  fontSize: screenSize.width * 0.06, // 6% of screen width
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                Text(
+                  'Sign Up with your Email',
+                  style: TextStyle(
+                    fontSize: screenSize.width * 0.035,
+                    color: Colors.black54,
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: screenSize.height * 0.005,
-              ), // 0.5% of screen height
-              Row(
-                children: [
-                  Text(
-                    'Have an account?',
-                    style: TextStyle(
-                      fontSize: screenSize.width * 0.04,
-                      color: Colors.black,
-                    ), // 4% of screen width
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      // Navigate to login page
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => LoginScreen(),
-                        ), // Replace with your login page
-                      );
-                    },
-                    child: Text(
-                      'Log in',
-                      style: TextStyle(
-                        fontSize: screenSize.width * 0.04, // 4% of screen width
-                        color: Color(0xFF4654BF),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: screenSize.height * 0.02), // 2% of screen height
-              _buildTextField('Email', Icons.email, screenSize),
-              _buildTextField('Password', Icons.lock, screenSize),
-              _buildTextField('Confirm Password', Icons.lock, screenSize),
-              _buildTextField('City', Icons.location_city, screenSize),
-              _buildTextField('School/College', Icons.school, screenSize),
-              _buildTextField('Contact', Icons.phone, screenSize),
-              SizedBox(height: screenSize.height * 0.02), // 2% of screen height
-              Center(
-                child: ElevatedButton(
+                SizedBox(height: screenSize.height * 0.03),
+                _buildInputField('Email', 'Example@email.com', emailController),
+                SizedBox(height: screenSize.height * 0.02),
+                _buildInputField(
+                  'Password',
+                  'At least 8 characters',
+                  passwordController,
+                  obscure: true,
+                ),
+                SizedBox(height: screenSize.height * 0.02),
+                _buildInputField(
+                  'Confirm Password',
+                  'Should match',
+                  confirmPasswordController,
+                  obscure: true,
+                ),
+                SizedBox(height: screenSize.height * 0.03),
+                ElevatedButton(
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => StudentTutorScreen(),
-                      ),
+                      MaterialPageRoute(builder: (_) => SignUpDetailsScreen()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF4654BF),
+                    minimumSize: Size(double.infinity, 50),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                    padding: EdgeInsets.symmetric(
-                      horizontal:
-                          screenSize.width * 0.15, // 15% of screen width
-                      vertical: screenSize.height * 0.02, // 2% of screen height
+                      borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                   child: Text(
                     'Continue',
-                    style: TextStyle(
-                      fontSize:
-                          screenSize.width * 0.045, // 4.5% of screen width
-                      color: Colors.white, // Set text color to white
-                    ),
+                    style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
                 ),
-              ),
-              SizedBox(height: screenSize.height * 0.02), // 2% of screen height
-              Center(
-                child: Text(
-                  'By continuing you confirm that you agree\nwith our Terms and Conditions.',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: screenSize.width * 0.035,
-                    color: Colors.black,
-                  ), // 3.5% of screen width
+                SizedBox(height: screenSize.height * 0.025),
+                Row(
+                  children: <Widget>[
+                    Expanded(child: Divider(thickness: 1)),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Text("or"),
+                    ),
+                    Expanded(child: Divider(thickness: 1)),
+                  ],
                 ),
-              ),
-            ],
+                SizedBox(height: screenSize.height * 0.02),
+                _buildSocialButton(
+                  'Continue with Google',
+                  'assets/images/google.png',
+                ),
+                SizedBox(height: screenSize.height * 0.015),
+                _buildSocialButton(
+                  'Continue with Facebook',
+                  'assets/images/facebook.png',
+                ),
+                SizedBox(height: screenSize.height * 0.025),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Already have an account? '),
+                    GestureDetector(
+                      onTap:
+                          () => Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => LoginScreen()),
+                          ),
+                      child: Text(
+                        'Login',
+                        style: TextStyle(
+                          color: Color(0xFF4654BF),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  Widget _buildTextField(String label, IconData icon, Size screenSize) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: screenSize.height * 0.01,
-      ), // 1% of screen height
-      child: TextField(
-        style: TextStyle(color: Colors.black), // Set input text color to black
-        decoration: InputDecoration(
-          labelText: label,
-          labelStyle: TextStyle(color: Colors.black),
-          prefixIcon: Icon(icon),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
+  Widget _buildInputField(
+    String label,
+    String hint,
+    TextEditingController controller, {
+    bool obscure = false,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: TextStyle(fontWeight: FontWeight.w600, color: Colors.black),
         ),
+        SizedBox(height: 6),
+        TextField(
+          controller: controller,
+          obscureText: obscure,
+          decoration: InputDecoration(
+            hintText: hint,
+            filled: true,
+            fillColor: Color(0xFFF5F6FA),
+            contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide.none,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSocialButton(String label, String iconPath) {
+    return ElevatedButton.icon(
+      onPressed: () {},
+      icon: Image.asset(iconPath, height: 24, width: 24),
+      label: Text(label, style: TextStyle(color: Colors.black)),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Color(0xFFF1F1F1),
+        minimumSize: Size(double.infinity, 50),
+        alignment: Alignment.centerLeft,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        elevation: 0,
       ),
     );
   }

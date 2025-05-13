@@ -1,101 +1,126 @@
 import 'package:flutter/material.dart';
 import 'package:leadbook/views/pages/asstudent.dart';
 import 'package:leadbook/views/pages/astutor.dart';
-import 'package:leadbook/views/pages/loginscreen.dart';
+import 'package:leadbook/views/widget_tree.dart';
 
-class StudentTutorScreen extends StatelessWidget {
-  const StudentTutorScreen({super.key});
+class StudentTutorScreen extends StatefulWidget {
+  @override
+  _StudentTutorScreenState createState() => _StudentTutorScreenState();
+}
+
+class _StudentTutorScreenState extends State<StudentTutorScreen> {
+  String? selectedRole;
 
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    final buttonPadding = EdgeInsets.symmetric(
-      horizontal: screenSize.width * 0.10,
-      vertical: screenSize.height * 0.03,
-    );
-    final padding = screenSize.width * 0.05; // 5% of screen width for padding
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
       backgroundColor: Colors.white,
-      body: Padding(
-        padding: EdgeInsets.all(padding),
-        child: Center(
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: screenSize.width * 0.07),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Center(
-                // Center the title
-                child: Text(
-                  'LEAD BOOK',
-                  style: TextStyle(
-                    fontSize: screenSize.width * 0.07, // 7% of screen width
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF4654BF),
-                  ),
+            children: [
+              SizedBox(height: screenSize.height * 0.03),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: IconButton(
+                  icon: Icon(Icons.arrow_back, color: Colors.black),
+                  onPressed: () => Navigator.pop(context),
                 ),
+              ),
+              SizedBox(height: screenSize.height * 0.04),
+              Image.asset(
+                'assets/images/Group_29.PNG', // Replace with your logo if needed
+                height: screenSize.height * 0.2,
               ),
               SizedBox(height: screenSize.height * 0.03),
               Text(
-                'What would you like to Register as?',
-                textAlign: TextAlign.center,
+                'Choose Your Role',
                 style: TextStyle(
-                  fontSize: screenSize.width * 0.04,
-                  color: Colors.black,
+                  fontSize: screenSize.width * 0.05,
+                  color: Color(0xFF4654BF),
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: screenSize.height * 0.02),
-              _buildRegistrationOption(
-                context,
-                title: 'As a Student:',
-                buttonText: 'Register as a Student',
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => AsStudent()),
-                  );
-                },
-                buttonPadding: buttonPadding,
-              ),
-              SizedBox(height: screenSize.height * 0.03),
-              _buildRegistrationOption(
-                context,
-                title: 'As a Tutor:',
-                buttonText: 'Register as a Tutor',
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => AsTutor()),
-                  );
-                },
-                buttonPadding: buttonPadding,
+              SizedBox(height: screenSize.height * 0.01),
+              Text(
+                'Knowledge Awaits – Will You Give or Receive?',
+                style: TextStyle(
+                  fontSize: screenSize.width * 0.035,
+                  color: Colors.black54,
+                ),
               ),
               SizedBox(height: screenSize.height * 0.04),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()),
-                  );
-                },
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _buildRoleCard(
+                    label: 'Student',
+                    image: 'assets/images/student.png',
+                    role: 'student',
+                  ),
+                  _buildRoleCard(
+                    label: 'Tutor',
+                    image: 'assets/images/tutor.png',
+                    role: 'tutor',
+                  ),
+                ],
+              ),
+              Spacer(),
+              ElevatedButton(
+                onPressed:
+                    selectedRole != null
+                        ? () {
+                          if (selectedRole == 'student') {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (_) => AsStudent()),
+                            );
+                          } else if (selectedRole == 'tutor') {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (_) => AsTutor()),
+                            );
+                          }
+                        }
+                        : null, // disable if nothing selected
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF4654BF),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: screenSize.width * 0.25,
+                    vertical: screenSize.height * 0.018,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
                 child: Text(
-                  'Simply explore the App by pressing this text',
+                  'Continue',
                   style: TextStyle(
-                    fontSize: screenSize.width * 0.04,
-                    color: Color(0xFF4654BF),
+                    color: Colors.white,
+                    fontSize: screenSize.width * 0.045,
                   ),
                 ),
               ),
-              SizedBox(height: screenSize.height * 0.03),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (_) => WidgetTree()),
+                  );
+                },
+                child: Text(
+                  'Continue without Registering',
+                  style: TextStyle(
+                    fontSize: screenSize.width * 0.04,
+                    color: Color(0xFF4654BF),
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+              ),
+              SizedBox(height: screenSize.height * 0.02),
             ],
           ),
         ),
@@ -103,50 +128,48 @@ class StudentTutorScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildRegistrationOption(
-    BuildContext context, {
-    required String title,
-    required String buttonText,
-    required VoidCallback onPressed,
-    required EdgeInsets buttonPadding,
+  Widget _buildRoleCard({
+    required String label,
+    required String image,
+    required String role,
   }) {
     final screenSize = MediaQuery.of(context).size;
+    final isSelected = selectedRole == role;
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 40.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            title,
-            textAlign: TextAlign.left,
-            style: TextStyle(
-              fontSize: screenSize.width * 0.06,
-              color: Color(0xFF4654BF),
-              fontWeight: FontWeight.bold,
-            ),
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectedRole = role;
+        });
+      },
+      child: Container(
+        width: screenSize.width * 0.35,
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: isSelected ? Color(0xFF4654BF) : Colors.grey.shade300,
+            width: 2,
           ),
-          SizedBox(height: screenSize.height * 0.03),
-          ElevatedButton(
-            onPressed: onPressed,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xFF4654BF),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30.0),
-              ),
-              padding: buttonPadding,
-              minimumSize: Size(screenSize.width * 0.7, 0),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Column(
+          children: [
+            Image.asset(
+              image,
+              height: screenSize.height * 0.2,
+              fit: BoxFit.contain,
             ),
-            child: Text(
-              buttonText,
+            SizedBox(height: 10),
+            Text(
+              label,
               style: TextStyle(
-                fontSize: screenSize.width * 0.045,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+                fontSize: screenSize.width * 0.04,
+                fontWeight: FontWeight.w500,
+                color: isSelected ? Color(0xFF4654BF) : Colors.black87,
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

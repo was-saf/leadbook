@@ -8,75 +8,102 @@ class Profile extends StatelessWidget {
 
   Profile({this.imageFile});
 
-  Widget _buildButton(String text, IconData icon, VoidCallback onPressed) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Color(0xFF41B57F),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            text,
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+  @override
+  Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: screenSize.width * 0.08),
+          child: Column(
+            children: [
+              SizedBox(height: screenSize.height * 0.04),
+              CircleAvatar(
+                radius: 50,
+                backgroundColor: Colors.grey[200],
+                backgroundImage:
+                    imageFile != null ? FileImage(imageFile!) : null,
+                child:
+                    imageFile == null
+                        ? Icon(Icons.person, size: 50, color: Colors.black45)
+                        : null,
+              ),
+              SizedBox(height: screenSize.height * 0.015),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => UserInformationScreen()),
+                  );
+                },
+                child: Text(
+                  'Humnah Khan',
+                  style: TextStyle(
+                    color: Colors.black87,
+                    fontWeight: FontWeight.bold,
+                    fontSize: screenSize.width * 0.045,
+                  ),
+                ),
+              ),
+              SizedBox(height: screenSize.height * 0.04),
+              _buildProfileButton(
+                context,
+                icon: Icons.person,
+                label: 'Personal Information',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => UserInformationScreen()),
+                  );
+                },
+              ),
+              _buildProfileButton(
+                context,
+                icon: Icons.lock,
+                label: 'Password Manager',
+                onTap: () {},
+              ),
+              _buildProfileButton(
+                context,
+                icon: Icons.logout,
+                label: 'Logout',
+                onTap: () {},
+              ),
+            ],
           ),
-          SizedBox(width: 10),
-          Icon(icon, color: Colors.white),
-        ],
+        ),
       ),
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              radius: 50,
-              backgroundColor: Colors.grey[300],
-              backgroundImage: imageFile != null ? FileImage(imageFile!) : null,
-              child:
-                  imageFile == null
-                      ? Icon(Icons.person, size: 50, color: Colors.black)
-                      : null,
-            ),
-            SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                // Added navigation to UserInformationScreen
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => UserInformationScreen(),
-                  ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
-              child: Text(
-                'Humnah Khan',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            SizedBox(height: 20),
-            _buildButton('Personal Information', Icons.person, () {}),
-            SizedBox(height: 10),
-            _buildButton('Password Manager', Icons.lock, () {}),
-            SizedBox(height: 10),
-            _buildButton('Logout', Icons.logout, () {}),
-          ],
+  Widget _buildProfileButton(
+    BuildContext context, {
+    required IconData icon,
+    required String label,
+    required VoidCallback onTap,
+  }) {
+    final screenSize = MediaQuery.of(context).size;
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: ElevatedButton.icon(
+        onPressed: onTap,
+        icon: Icon(icon, color: Colors.white),
+        label: Text(
+          label,
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: screenSize.width * 0.04,
+          ),
+        ),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Color(0xFF4654BF),
+          minimumSize: Size(double.infinity, 50),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
         ),
       ),
     );
