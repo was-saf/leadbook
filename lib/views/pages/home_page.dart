@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:leadbook/views/pages/TutorListScreen.dart';
 import 'package:leadbook/views/pages/grade11/grade11.dart';
 import 'package:leadbook/views/pages/grade12/grade12.dart';
 import 'package:leadbook/views/pages/grade9/grade9.dart';
 import 'package:leadbook/views/pages/grade10/grade10.dart';
+import 'package:leadbook/views/pages/student_check_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => TutorListScreen()),
+                    MaterialPageRoute(builder: (context) => StudentCheckPage()),
                   );
                 },
                 style: ElevatedButton.styleFrom(

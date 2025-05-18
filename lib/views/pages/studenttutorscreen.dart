@@ -32,7 +32,7 @@ class _StudentTutorScreenState extends State<StudentTutorScreen> {
               ),
               SizedBox(height: screenSize.height * 0.04),
               Image.asset(
-                'assets/images/Group_29.PNG', // Replace with your logo if needed
+                'assets/images/Group_29.png', // Replace with your logo if needed
                 height: screenSize.height * 0.2,
               ),
               SizedBox(height: screenSize.height * 0.03),

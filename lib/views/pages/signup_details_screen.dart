@@ -30,7 +30,6 @@ class SignUpDetailsScreen extends StatelessWidget {
                   'assets/images/Group_29.png',
                   height: screenSize.height * 0.2,
                 ),
-                SizedBox(height: screenSize.height * 0.025),
                 Text(
                   'Enter your details',
                   style: TextStyle(
@@ -39,13 +38,13 @@ class SignUpDetailsScreen extends StatelessWidget {
                     color: Colors.black,
                   ),
                 ),
-                SizedBox(height: screenSize.height * 0.03),
+                SizedBox(height: screenSize.height * 0.01),
                 _buildInputField('City', cityController),
-                SizedBox(height: screenSize.height * 0.02),
+                SizedBox(height: screenSize.height * 0.01),
                 _buildInputField('Grade', gradeController),
-                SizedBox(height: screenSize.height * 0.02),
+                SizedBox(height: screenSize.height * 0.01),
                 _buildInputField('School College', schoolController),
-                SizedBox(height: screenSize.height * 0.03),
+                SizedBox(height: screenSize.height * 0.01),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.push(

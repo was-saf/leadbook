@@ -31,7 +31,6 @@ class SignUpScreen extends StatelessWidget {
                   'assets/images/Group_29.png',
                   height: screenSize.height * 0.2,
                 ),
-                SizedBox(height: screenSize.height * 0.025),
                 Text(
                   'Create an account',
                   style: TextStyle(
@@ -47,23 +46,23 @@ class SignUpScreen extends StatelessWidget {
                     color: Colors.black54,
                   ),
                 ),
-                SizedBox(height: screenSize.height * 0.03),
+                SizedBox(height: screenSize.height * 0.01),
                 _buildInputField('Email', 'Example@email.com', emailController),
-                SizedBox(height: screenSize.height * 0.02),
+                SizedBox(height: screenSize.height * 0.01),
                 _buildInputField(
                   'Password',
                   'At least 8 characters',
                   passwordController,
                   obscure: true,
                 ),
-                SizedBox(height: screenSize.height * 0.02),
+                SizedBox(height: screenSize.height * 0.01),
                 _buildInputField(
                   'Confirm Password',
                   'Should match',
                   confirmPasswordController,
                   obscure: true,
                 ),
-                SizedBox(height: screenSize.height * 0.03),
+                SizedBox(height: screenSize.height * 0.01),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.push(
@@ -83,7 +82,7 @@ class SignUpScreen extends StatelessWidget {
                     style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
                 ),
-                SizedBox(height: screenSize.height * 0.025),
+                SizedBox(height: screenSize.height * 0.01),
                 Row(
                   children: <Widget>[
                     Expanded(child: Divider(thickness: 1)),
@@ -94,17 +93,17 @@ class SignUpScreen extends StatelessWidget {
                     Expanded(child: Divider(thickness: 1)),
                   ],
                 ),
-                SizedBox(height: screenSize.height * 0.02),
+                SizedBox(height: screenSize.height * 0.01),
                 _buildSocialButton(
                   'Continue with Google',
                   'assets/images/google.png',
                 ),
-                SizedBox(height: screenSize.height * 0.015),
+                SizedBox(height: screenSize.height * 0.01),
                 _buildSocialButton(
                   'Continue with Facebook',
                   'assets/images/facebook.png',
                 ),
-                SizedBox(height: screenSize.height * 0.025),
+                SizedBox(height: screenSize.height * 0.01),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

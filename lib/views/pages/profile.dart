@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
-import 'dart:io';
-
+import 'package:leadbook/main.dart';
+import 'package:leadbook/views/pages/passwordmanagerpage.dart';
 import 'package:leadbook/views/pages/profileInfo.dart';
+import 'dart:io';
 
 class Profile extends StatelessWidget {
   final File? imageFile;
+  final String role;
 
-  Profile({this.imageFile});
+  Profile({this.imageFile, this.role = 'tutor'});
 
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final textColor = isDark ? Colors.white : Colors.black87;
+    final iconBgColor = isDark ? Colors.grey[800] : Colors.grey[200];
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: screenSize.width * 0.08),
@@ -22,12 +27,12 @@ class Profile extends StatelessWidget {
               SizedBox(height: screenSize.height * 0.04),
               CircleAvatar(
                 radius: 50,
-                backgroundColor: Colors.grey[200],
+                backgroundColor: iconBgColor,
                 backgroundImage:
                     imageFile != null ? FileImage(imageFile!) : null,
                 child:
                     imageFile == null
-                        ? Icon(Icons.person, size: 50, color: Colors.black45)
+                        ? Icon(Icons.person, size: 50, color: Colors.grey)
                         : null,
               ),
               SizedBox(height: screenSize.height * 0.015),
@@ -35,13 +40,15 @@ class Profile extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (_) => UserInformationScreen()),
+                    MaterialPageRoute(
+                      builder: (_) => ProfileInfoPage(role: role),
+                    ),
                   );
                 },
                 child: Text(
-                  'Humnah Khan',
+                  'Edit Profile',
                   style: TextStyle(
-                    color: Colors.black87,
+                    color: textColor,
                     fontWeight: FontWeight.bold,
                     fontSize: screenSize.width * 0.045,
                   ),
@@ -55,7 +62,9 @@ class Profile extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (_) => UserInformationScreen()),
+                    MaterialPageRoute(
+                      builder: (_) => ProfileInfoPage(role: role),
+                    ),
                   );
                 },
               ),
@@ -63,13 +72,23 @@ class Profile extends StatelessWidget {
                 context,
                 icon: Icons.lock,
                 label: 'Password Manager',
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => PasswordManagerPage()),
+                  );
+                },
               ),
               _buildProfileButton(
                 context,
                 icon: Icons.logout,
                 label: 'Logout',
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (_) => MyApp()),
+                  );
+                },
               ),
             ],
           ),
@@ -85,6 +104,7 @@ class Profile extends StatelessWidget {
     required VoidCallback onTap,
   }) {
     final screenSize = MediaQuery.of(context).size;
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: ElevatedButton.icon(

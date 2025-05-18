@@ -34,10 +34,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 Image.asset(
-                  'assets/images/Group_29.PNG',
+                  'assets/images/Group_29.png',
                   height: screenSize.height * 0.2,
                 ),
-                SizedBox(height: screenSize.height * 0.025),
                 Text(
                   'Login with your account',
                   style: TextStyle(
@@ -45,7 +44,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: Colors.black,
                   ),
                 ),
-                SizedBox(height: screenSize.height * 0.04),
                 _buildInputField(
                   'Email',
                   'Example@email.com',
@@ -58,7 +56,25 @@ class _LoginScreenState extends State<LoginScreen> {
                   controller: _passwordController,
                   obscureText: true,
                 ),
-                SizedBox(height: screenSize.height * 0.03),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => ForgotPassword()),
+                      );
+                    },
+                    child: Text(
+                      'Forgot Password?',
+                      style: TextStyle(
+                        color: Color(0xFF4654BF),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: screenSize.height * 0.02),
                 ElevatedButton(
                   onPressed: () {
                     selectedPageNotifier.value = 1;
